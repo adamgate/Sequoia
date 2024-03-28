@@ -3,40 +3,40 @@
     <button @click="applyBold" class="button">
       <i class="bi bi-type-bold" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyItalics" class="button">
       <i class="bi bi-type-italic" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyHeading1" class="button">
       <i class="bi bi-type-h1" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyHeading2" class="button">
       <i class="bi bi-type-h2" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyHeading3" class="button">
       <i class="bi bi-type-h3" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyHeading4" class="button">
       <i class="bi bi-type-h4" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyHeading5" class="button">
       <i class="bi bi-type-h5" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyHeading6" class="button">
       <i class="bi bi-type-h6" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyOrderedList" class="button">
       <i class="bi bi-list-ol" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyUnorderedList" class="button">
       <i class="bi bi-list-ul" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="applyChecklist" class="button">
       <i class="bi bi-check2-square" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="undo" class="button">
       <i class="bi bi-arrow-counterclockwise" />
     </button>
-    <button @click="applyBold" class="button">
+    <button @click="redo" class="button">
       <i class="bi bi-arrow-clockwise" />
     </button>
     <div
@@ -59,7 +59,7 @@ export default {
 
   data() {
     return {
-      innerValue: this.value,
+      innerValue: this.value || '<p><br></p>',
     };
   },
 
@@ -68,6 +68,18 @@ export default {
       this.$emit("input", event.target.innerHTML);
     },
     applyBold() {},
+    applyItalics() {},
+    applyHeading1() {},
+    applyHeading2() {},
+    applyHeading3() {},
+    applyHeading4() {},
+    applyHeading5() {},
+    applyHeading6() {},
+    applyOrderedList() {},
+    applyUnorderedList() {},
+    applyChecklist() {},
+    undo() {},
+    redo() {}
   },
 };
 </script>
