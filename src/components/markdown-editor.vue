@@ -24,14 +24,23 @@
     <button @click="applyHeading6" class="button">
       <i class="bi bi-type-h6" />
     </button>
-    <button @click="applyOrderedList" class="button">
-      <i class="bi bi-list-ol" />
-    </button>
     <button @click="applyUnorderedList" class="button">
       <i class="bi bi-list-ul" />
     </button>
+    <button @click="applyOrderedList" class="button">
+      <i class="bi bi-list-ol" />
+    </button>
     <button @click="applyChecklist" class="button">
       <i class="bi bi-check2-square" />
+    </button>
+    <button @click="InsertHorizontalRule" class="button">
+      <i class="bi bi-hr" />
+    </button>
+    <button @click="insertImage" class="button">
+      <i class="bi bi-card-image" />
+    </button>
+    <button @click="insertHyperlink('')" class="button">
+      <i class="bi bi-link" />
     </button>
     <button @click="undo" class="button">
       <i class="bi bi-arrow-counterclockwise" />
@@ -42,9 +51,9 @@
     <div
       @input="onInput"
       v-html="innerValue"
-      contentedittable="true"
+      contenteditable="true"
       class="border border-primary rounded p-2"
-      style="resize: none"
+      style="resize: none; white-space:pre-wrap;"
     />
   </div>
 </template>
@@ -67,19 +76,55 @@ export default {
     onInput(event) {
       this.$emit("input", event.target.innerHTML);
     },
-    applyBold() {},
-    applyItalics() {},
-    applyHeading1() {},
-    applyHeading2() {},
-    applyHeading3() {},
-    applyHeading4() {},
-    applyHeading5() {},
-    applyHeading6() {},
-    applyOrderedList() {},
-    applyUnorderedList() {},
-    applyChecklist() {},
-    undo() {},
-    redo() {}
+    applyBold() {
+      document.execCommand('bold')
+    },
+    applyItalics() {
+      document.execCommand('italic')
+    },
+    applyHeading1() {
+      document.execCommand('formatBlock', false, '<h1>')
+    },
+    applyHeading2() {
+      document.execCommand('formatBlock', false, '<h2>')
+    },
+    applyHeading3() {
+      document.execCommand('formatBlock', false, '<h3>')
+    },
+    applyHeading4() {
+      document.execCommand('formatBlock', false, '<h4>')
+    },
+    applyHeading5() {
+      document.execCommand('formatBlock', false, '<h5>')
+    },
+    applyHeading6() {
+      document.execCommand('formatBlock', false, '<h6>')
+    },
+    applyUnorderedList() {
+      document.execCommand('insertUnorderedList')
+    },
+    applyOrderedList() {
+      document.execCommand('insertOrderedList')
+    },
+    applyChecklist() {
+
+    },
+    insertHorizontalRule() {
+      document.execCommand('insertHorizontalRule')
+    },
+    insertHyperlink(url : string) {
+      document.execCommand('createLink')
+      // document.execCommand('createLink', false, url)
+    },
+    insertImage() {
+      document.execCommand('insertImage')
+    },
+    undo() {
+      document.execCommand('undo')
+    },
+    redo() {
+      document.execCommand('redo')
+    }
   },
 };
 </script>
