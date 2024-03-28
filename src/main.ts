@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import * as bootstrap from 'bootstrap'
 
+import './scss/styles.scss'
 import './style.css'
 
 import './demos/ipc'
