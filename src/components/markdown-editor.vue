@@ -44,13 +44,13 @@
       v-html="innerValue"
       contentedittable="true"
       class="border border-primary rounded p-2"
-      style="resize:none"
+      style="resize: none"
     />
   </div>
 </template>
 
 <script lang="ts">
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default {
   name: "MarkdownEditor",
@@ -67,22 +67,21 @@ export default {
     onInput(event) {
       this.$emit("input", event.target.innerHTML);
     },
-    applyBold() {
-    }
+    applyBold() {},
   },
 };
 </script>
 
 <style>
-  .button {
-    @apply border-2;
-    @apply border-gray-300;
-    @apply rounded-lg;
-    @apply px-3 py-1;
-    @apply mb-3 mr-3;
-  }
+.button {
+  @apply border-2;
+  @apply border-gray-300;
+  @apply rounded-lg;
+  @apply px-3 py-1;
+  @apply mb-3 mr-3;
+}
 
-  .button:hover {
-    @apply border-green-300;
-  }
+.button:hover {
+  @apply border-green-300;
+}
 </style>
