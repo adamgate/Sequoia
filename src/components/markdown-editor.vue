@@ -33,7 +33,7 @@
     <button @click="applyChecklist" class="button">
       <i class="bi bi-check2-square" />
     </button>
-    <button @click="InsertHorizontalRule" class="button">
+    <button @click="insertHorizontalRule" class="button">
       <i class="bi bi-hr" />
     </button>
     <button @click="insertImage" class="button">
