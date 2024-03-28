@@ -17,7 +17,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <HelloWorld msg="Sequoia" />
   <div class="flex-center">
     Place static files into the <code>/public</code> folder
-    <img style="width: 2.4em; margin-left: .4em;" src="/logo.svg" alt="Logo">
+    <img style="width: 2.4em; margin-left: .4em;" src="/src/assets/pinecone.png" alt="Logo">
   </div>
 </template>
 
