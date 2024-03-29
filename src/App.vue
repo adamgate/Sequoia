@@ -1,10 +1,12 @@
 <template>
   <h1>Test</h1>
-  <MarkdownEditor :value="exampleContent"/>
+  <MarkdownEditor :title="exampleTitle" :contents="exampleContent"/>
 </template>
 
 <script setup lang="ts">
 import MarkdownEditor from './components/markdown-editor.vue'
+
+const exampleTitle = "Example"
 
 const exampleContent = 
   `# Hello, world! 

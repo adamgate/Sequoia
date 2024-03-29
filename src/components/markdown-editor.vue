@@ -1,4 +1,9 @@
 <template>
+  <h2
+      @input="onTitleInput"
+      v-html="documentTitle"
+      contenteditable="true"
+  />
   <div class="flex flex-wrap">
     <button @click="applyBold" class="button">
       <i class="bi bi-type-bold" />
@@ -49,11 +54,11 @@
       <i class="bi bi-arrow-clockwise" />
     </button>
     <div
-      @input="onInput"
-      v-html="innerValue"
+      @input="onDocumentInput"
+      v-html="documentContents"
       contenteditable="true"
       class="border border-primary rounded p-2"
-      style="resize: none; white-space:pre-wrap;"
+      style="white-space:pre-wrap;"
     />
   </div>
 </template>
@@ -64,17 +69,21 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 export default {
   name: "MarkdownEditor",
 
-  props: ["value"],
+  props: ["contents", "title"],
 
   data() {
     return {
-      innerValue: this.value || '<p><br></p>',
+      documentContents: this.contents || '<p><br></p>',
+      documentTitle: this.title || "Untitled"
     };
   },
 
   methods: {
-    onInput(event) {
-      this.$emit("input", event.target.innerHTML);
+    onTitleInput(event) {
+      this.$emit("input", event.target.documentTitle);
+    },
+    onDocumentInput(event) {
+      this.$emit("input", event.target.documentContents);
     },
     applyBold() {
       document.execCommand('bold')
