@@ -11,24 +11,35 @@
     <button @click="applyItalics" class="button">
       <i class="bi bi-type-italic" />
     </button>
-    <button @click="applyHeading1" class="button">
-      <i class="bi bi-type-h1" />
-    </button>
-    <button @click="applyHeading2" class="button">
-      <i class="bi bi-type-h2" />
-    </button>
-    <button @click="applyHeading3" class="button">
-      <i class="bi bi-type-h3" />
-    </button>
-    <button @click="applyHeading4" class="button">
-      <i class="bi bi-type-h4" />
-    </button>
-    <button @click="applyHeading5" class="button">
-      <i class="bi bi-type-h5" />
-    </button>
-    <button @click="applyHeading6" class="button">
-      <i class="bi bi-type-h6" />
-    </button>
+
+    <div class="dropdown">
+
+      <button class="button dropbutton">
+        <i class="bi bi-card-heading"></i>
+      </button>
+
+      <div class="dropdown-content">
+        <button @click="applyHeading1" class="button">
+          <i class="bi bi-type-h1" />
+        </button>
+        <button @click="applyHeading2" class="button">
+          <i class="bi bi-type-h2" />
+        </button>
+        <button @click="applyHeading3" class="button">
+          <i class="bi bi-type-h3" />
+        </button>
+        <button @click="applyHeading4" class="button">
+          <i class="bi bi-type-h4" />
+        </button>
+        <button @click="applyHeading5" class="button">
+          <i class="bi bi-type-h5" />
+        </button>
+        <button @click="applyHeading6" class="button">
+          <i class="bi bi-type-h6" />
+        </button>
+      </div>
+    </div>
+
     <button @click="applyUnorderedList" class="button">
       <i class="bi bi-list-ul" />
     </button>
@@ -85,6 +96,10 @@ export default {
     onDocumentInput(event) {
       this.$emit("input", event.target.documentContents);
     },
+
+    // execCommand is deprecated, but research indicates that there isn't anything adequate to replace it. 
+    // Several sources suggested using it anyways as a result, so I put it in.
+    // It would be more of an issue if the app wasn't using electron.
     applyBold() {
       document.execCommand('bold')
     },
@@ -134,20 +149,52 @@ export default {
     redo() {
       document.execCommand('redo')
     }
-  },
+  }
 };
 </script>
 
 <style>
+ /* TODO - research and see if @apply is what should be used here */
 .button {
-  @apply border-2;
-  @apply border-gray-300;
-  @apply rounded-lg;
-  @apply px-3 py-1;
-  @apply mb-3 mr-3;
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  background-color: white;
+  color: black;
 }
 
 .button:hover {
-  @apply border-green-300;
+  background-color: gray;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbutton {
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  /* min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  z-index: 1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbutton {
+  background-color: #3e8e41;
 }
 </style>

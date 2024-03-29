@@ -20,7 +20,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "package": "npm run build && electron-packager . --platform=win32 --arch=x64 --electron-version=1.4.3 --overwrite"
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",

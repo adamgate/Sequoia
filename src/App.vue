@@ -9,17 +9,21 @@ import MarkdownEditor from './components/markdown-editor.vue'
 const exampleTitle = "Example"
 
 const exampleContent = 
-  `# Hello, world! 
+  `<h3># Hello, world!</h3> 
 
-  **Lorem ipsum dolor** _sit amet_ 
+  <b>**Lorem ipsum dolor**</b> _sit amet_ 
 
-  * Some 
-  * Unordered 
-  * List 
+  <ul>
+    <li> * Some</li> 
+    <li> * Unordered</li> 
+    <li> * List </li>
+  </ul>
 
-  1. Some 
-  1. Ordered 
-  1. List `
+  <ol>
+    <li> Some </li> 
+    <li> Ordered </li>
+    <li> List </li>
+  </ol> `
 
 </script>
 
