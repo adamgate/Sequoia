@@ -182,6 +182,8 @@
 
 <script lang="ts">
 import MarkdownIt from "markdown-it";
+// import MarkdownItTasklists from "markdown-it-task-lists";
+// import MarkdownItEmoji from "markdown-it-emoji";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default {
@@ -201,17 +203,19 @@ export default {
       documentContents: this.contents || "<p><br></p>",
       documentTitle: this.title || "Untitled",
       markdown: new MarkdownIt()
+      // .use(MarkdownItTasklists, {enabled: true})
+      // .use(MarkdownItEmoji)
     };
   },
   mounted() {
     document.execCommand("defaultParagraphSeparator", false, "p");
   },
   methods: {
-    onTitleInput(event: Event) {
-      // this.$emit("input", event.target?['documentTitle']);
+    onTitleInput(event) {
+      this.$emit("input", event.target.value);
     },
-    onDocumentInput(event: Event) {
-      // this.$emit("input", event.target.value);
+    onDocumentInput(event) {
+      this.$emit("input", event.target.value);
     },
 
     // Note: execCommand is deprecated, but research indicates that there isn't anything adequate to replace it.

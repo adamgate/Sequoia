@@ -7,34 +7,48 @@ import MarkdownEditor from './components/markdown-editor.vue'
 
 const exampleTitle = "Example Title";
 
-const exampleHtmlContent = 
-  `<h1> Hello, world!</h1> 
+const exampleMdContent = 
+`# This is a heading
 
-  <b>Lorem ipsum dolor</b> sit amet
+---
 
-  <ul>
-    <li> Some</li> 
-    <li> Unordered</li> 
-    <li> List </li>
-  </ul>
+**This is bold** | _This is italic_
 
-  <ol>
-    <li> Some </li> 
-    <li> Ordered </li>
-    <li> List </li>
-  </ol> `;
+List 1
+* Some 
+* Unordered 
+* List 
 
-  const exampleMdContent = 
-  `# Hello, world!
+List 2
+1. Some 
+1. Ordered
+1. List
 
-  **Lorem ipsum dolor** _sit amet_ 
-  * Some 
-  * Unordered 
-  * List 
-  
-  1. Some 
-  1. Ordered
-  1. List`;
+List 3
+- [ ] Some
+- [X] Task
+- [ ] List 
+
+:satellite:
+
+This is a table
+| Column 1 | Column 2 |
+| -------- | -------- |
+| Row 1    | Row 2    |
+
+\`This is inline code\`
+
+\`\`\`
+public static void main() 
+{
+  This is a Code Block
+}
+\`\`\`
+
+[This is a link](https://www.google.com)
+
+> This is a blockquote...
+`;
 
 </script>
 
