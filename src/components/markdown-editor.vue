@@ -1,5 +1,5 @@
 <template>
-  <h2 @input="onTitleInput" v-html="documentTitle" contenteditable="true" />
+  <h1 id="editor-title" @input="onTitleInput" v-html="documentTitle" contenteditable="true" />
   <div id="editor">
     <div id="toolbar" class="flex flex-wrap">
       <button
@@ -161,7 +161,8 @@
         <i class="bi bi-arrow-clockwise" />
       </button>
       <div
-        @input="onDocumentInput"
+        id="editor-text"
+        @input="onDocumentInput($event)"
         v-html="documentContents"
         contenteditable="true"
         class="border rounded editor-output"
@@ -195,70 +196,121 @@ export default {
     document.execCommand("defaultParagraphSeparator", false, "p");
   },
   methods: {
-    onTitleInput(event) {
-      console.log(typeof event);
-      this.$emit("input", event.target.documentTitle);
+    onTitleInput(event: Event) {
+      // this.$emit("input", event.target?['documentTitle']);
     },
-    onDocumentInput(event) {
-      this.$emit("input", event.target.documentContents);
+    onDocumentInput(event: Event) {
+      // this.$emit("input", event.target.value);
     },
 
     // Note: execCommand is deprecated, but research indicates that there isn't anything adequate to replace it.
     // Several sources suggested continuing using it because of that. It would be more of an issue if the app wasn't using electron.
     applyBold() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("bold");
     },
     applyItalic() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("italic");
     },
     applyHeading1() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("formatBlock", false, "<h1>");
     },
     applyHeading2() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("formatBlock", false, "<h2>");
     },
     applyHeading3() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("formatBlock", false, "<h3>");
     },
     applyHeading4() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("formatBlock", false, "<h4>");
     },
     applyHeading5() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("formatBlock", false, "<h5>");
     },
     applyHeading6() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("formatBlock", false, "<h6>");
     },
     applyUnorderedList() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("insertUnorderedList");
     },
     applyOrderedList() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("insertOrderedList");
     },
     applyChecklist() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       // TODO - implement checklist behavior (will need markdown-it extra module + custom html code to add the " - [ ] "")
     },
     insertHorizontalRule() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("insertHorizontalRule");
     },
     insertHyperlink() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("createLink", false, "");
     },
     insertImage() {
+      if (!this.isSelectionInEditorText())
+        return;
+      
       document.execCommand("insertImage");
     },
     undo() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("undo");
     },
     redo() {
+      if (!this.isSelectionInEditorText())
+        return;
+
       document.execCommand("redo");
     },
+
+    // Only allow the toolbar buttons to work on the editor text box
+    isSelectionInEditorText() : boolean {
+      return window.getSelection()?.focusNode?.parentElement?.parentElement?.id === "editor-text";
+    }
   },
 };
 </script>
 
 <style>
-/* TODO - research and see if @apply is what should be used here */
 .toolbar-button {
   border: 1.5px solid black;
   border-radius: 5px;
