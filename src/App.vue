@@ -8,7 +8,7 @@ import MarkdownEditor from './components/markdown-editor.vue'
 const exampleTitle = "Example Title";
 
 const exampleContent = 
-  `<h3># Hello, world!</h3> 
+  `<h1># Hello, world!</h1> 
 
   <b>**Lorem ipsum dolor**</b> _sit amet_ 
 

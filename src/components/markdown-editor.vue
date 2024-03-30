@@ -116,11 +116,20 @@
         <i class="bi bi-list-task" />
       </button>
       <button
+        @click="insertTable"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Insert Table"
+      >
+        <i class="bi bi-table" />
+      </button>
+      <button
         @click="insertHorizontalRule"
         class="toolbar-button"
         data-toggle="tooltip"
         data-placement="top"
-        title="Horizontal Rule"
+        title="Insert Horizontal Rule"
       >
         <i class="bi bi-hr" />
       </button>
@@ -165,7 +174,7 @@
         @input="onDocumentInput($event)"
         v-html="documentContents"
         contenteditable="true"
-        class="border rounded editor-output"
+        class="border rounded editor-output markdown-body"
       />
     </div>
   </div>
@@ -271,6 +280,12 @@ export default {
 
       // TODO - implement checklist behavior (will need markdown-it extra module + custom html code to add the " - [ ] "")
     },
+    insertTable() {
+      if (!this.isSelectionInEditorText())
+        return;
+
+      // TODO - implement table behavior (will need markdown-it extra module + custom html code to add the " - [ ] "")
+    },
     insertHorizontalRule() {
       if (!this.isSelectionInEditorText())
         return;
@@ -310,8 +325,8 @@ export default {
 };
 </script>
 
+<!-- <style src="node_modules\github-markdown-css\github-markdown-light.css"> -->
 <style>
-
 .toolbar-button {
   font-size: 1.2em;
   border: .13rem solid gray;
@@ -339,9 +354,9 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: gray;
-  min-width: 210px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-color: white;
+  min-width: 230px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   z-index: 1;
 }
 
@@ -353,33 +368,5 @@ export default {
 .editor-output {
   height: 100%;
   display: block;
-}
-
-/* Make the Markdown styling look good */
-.editor-output h1 {
-}
-
-.editor-output h2 {
-}
-
-.editor-output h3 {
-}
-
-.editor-output h4 {
-}
-
-.editor-output h5 {
-}
-
-.editor-output h6 {
-}
-
-.editor-output p {
-}
-
-.editor-output ul {
-}
-
-.editor-output ol {
 }
 </style>

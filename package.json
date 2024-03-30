@@ -40,6 +40,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "github-markdown-css": "^5.5.1",
     "unplugin-vue-markdown": "^0.26.0"
   }
 }
