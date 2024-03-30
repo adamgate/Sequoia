@@ -172,7 +172,7 @@
       <div
         id="editor-text"
         @input="onDocumentInput($event)"
-        v-html="documentContents"
+        v-html="markdown.render(documentContents)"
         contenteditable="true"
         class="border rounded editor-output markdown-body"
       />
@@ -181,6 +181,7 @@
 </template>
 
 <script lang="ts">
+import MarkdownIt from "markdown-it";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default {
@@ -199,6 +200,7 @@ export default {
     return {
       documentContents: this.contents || "<p><br></p>",
       documentTitle: this.title || "Untitled",
+      markdown: new MarkdownIt()
     };
   },
   mounted() {
