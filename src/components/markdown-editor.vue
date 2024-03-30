@@ -142,8 +142,7 @@ export default {
       document.execCommand("insertHorizontalRule");
     },
     insertHyperlink() {
-      console.log(this.hyperlink);
-      document.execCommand("createLink", false, this.hyperlink);
+      document.execCommand("createLink", false, '');
     },
     insertImage() {
       document.execCommand("insertImage");
