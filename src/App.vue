@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import MarkdownEditor from './components/markdown-editor.vue'
 
-const exampleTitle = "Example"
+const exampleTitle = "Example";
 
 const exampleContent = 
   `<h3># Hello, world!</h3> 
@@ -23,7 +23,7 @@ const exampleContent =
     <li> Some </li> 
     <li> Ordered </li>
     <li> List </li>
-  </ol> `
+  </ol> `;
 
 </script>
 
