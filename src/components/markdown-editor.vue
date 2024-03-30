@@ -311,18 +311,23 @@ export default {
 </script>
 
 <style>
+
 .toolbar-button {
-  border: 1.5px solid black;
+  font-size: 1.2em;
+  border: .13rem solid gray;
   border-radius: 5px;
   padding: 5 4 5 4px;
   margin: 2px;
   background-color: white;
   color: black;
+  -webkit-text-stroke: .3px black;
 }
 
 .toolbar-button:hover {
   background-color: black;
+  border-color: black;
   color: white;
+  -webkit-text-stroke: white;
 }
 
 .dropdown {
