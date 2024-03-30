@@ -1,80 +1,177 @@
 <template>
   <h2 @input="onTitleInput" v-html="documentTitle" contenteditable="true" />
-  <div id="toolbar" class="flex flex-wrap">
-    <button @click="applyBold" class="button" data-toggle="tooltip" data-placement="top" title="Bold">
-      <i class="bi bi-type-bold" />
-    </button>
-    <button @click="applyItalic" class="button" data-toggle="tooltip" data-placement="top" title="Italic">
-      <i class="bi bi-type-italic" />
-    </button>
-
-    <div class="dropdown">
-      <button class="button dropbutton" data-toggle="tooltip" data-placement="top" title="Headings">
-        <i class="bi bi-card-heading"></i>
+  <div id="editor">
+    <div id="toolbar" class="flex flex-wrap">
+      <button
+        @click="applyBold"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Bold"
+      >
+        <i class="bi bi-type-bold" />
+      </button>
+      <button
+        @click="applyItalic"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Italic"
+      >
+        <i class="bi bi-type-italic" />
       </button>
 
-      <div class="dropdown-content">
-        <button @click="applyHeading1" class="button" data-toggle="tooltip" data-placement="top" title="Heading 1">
-          <i class="bi bi-type-h1" />
+      <div class="dropdown">
+        <button
+          class="toolbar-button"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Headings"
+        >
+          <i class="bi bi-card-heading"></i>
         </button>
-        <button @click="applyHeading2" class="button" data-toggle="tooltip" data-placement="top" title="Heading 2">
-          <i class="bi bi-type-h2" />
-        </button>
-        <button @click="applyHeading3" class="button" data-toggle="tooltip" data-placement="top" title="Heading 3">
-          <i class="bi bi-type-h3" />
-        </button>
-        <button @click="applyHeading4" class="button" data-toggle="tooltip" data-placement="top" title="Heading 4">
-          <i class="bi bi-type-h4" />
-        </button>
-        <button @click="applyHeading5" class="button" data-toggle="tooltip" data-placement="top" title="Heading 5">
-          <i class="bi bi-type-h5" />
-        </button>
-        <button @click="applyHeading6" class="button" data-toggle="tooltip" data-placement="top" title="Heading 6">
-          <i class="bi bi-type-h6" />
-        </button>
+        <div class="dropdown-content">
+          <button
+            @click="applyHeading1"
+            class="toolbar-button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Heading 1"
+          >
+            <i class="bi bi-type-h1" />
+          </button>
+          <button
+            @click="applyHeading2"
+            class="toolbar-button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Heading 2"
+          >
+            <i class="bi bi-type-h2" />
+          </button>
+          <button
+            @click="applyHeading3"
+            class="toolbar-button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Heading 3"
+          >
+            <i class="bi bi-type-h3" />
+          </button>
+          <button
+            @click="applyHeading4"
+            class="toolbar-button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Heading 4"
+          >
+            <i class="bi bi-type-h4" />
+          </button>
+          <button
+            @click="applyHeading5"
+            class="toolbar-button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Heading 5"
+          >
+            <i class="bi bi-type-h5" />
+          </button>
+          <button
+            @click="applyHeading6"
+            class="toolbar-button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Heading 6"
+          >
+            <i class="bi bi-type-h6" />
+          </button>
+        </div>
       </div>
-    </div>
 
-    <button @click="applyUnorderedList" class="button" data-toggle="tooltip" data-placement="top" title="Unordered List">
-      <i class="bi bi-list-ul" />
-    </button>
-    <button @click="applyOrderedList" class="button" data-toggle="tooltip" data-placement="top" title="Ordered List">
-      <i class="bi bi-list-ol" />
-    </button>
-    <button @click="applyChecklist" class="button" data-toggle="tooltip" data-placement="top" title="Checklist">
-      <i class="bi bi-list-task" />
-    </button>
-    <button @click="insertHorizontalRule" class="button" data-toggle="tooltip" data-placement="top" title="Horizontal Rule">
-      <i class="bi bi-hr" />
-    </button>
-    <button @click="insertImage" class="button" data-toggle="tooltip" data-placement="top" title="Insert Image">
-      <i class="bi bi-card-image" />
-    </button>
-    <button @click="" class="button" data-toggle="tooltip" data-placement="top" title="Insert Link">
-      <i class="bi bi-link" />
-    </button>
-    <button @click="undo" class="button" data-toggle="tooltip" data-placement="top" title="Undo">
-      <i class="bi bi-arrow-counterclockwise" />
-    </button>
-    <button @click="redo" class="button" data-toggle="tooltip" data-placement="top" title="Redo">
-      <i class="bi bi-arrow-clockwise" />
-    </button>
-    <div
-      @input="onDocumentInput"
-      v-html="documentContents"
-      contenteditable="true"
-      class="border border-primary rounded p-2"
-      style="white-space: pre-wrap"
-    />
+      <button
+        @click="applyUnorderedList"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Unordered List"
+      >
+        <i class="bi bi-list-ul" />
+      </button>
+      <button
+        @click="applyOrderedList"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Ordered List"
+      >
+        <i class="bi bi-list-ol" />
+      </button>
+      <button
+        @click="applyChecklist"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Checklist"
+      >
+        <i class="bi bi-list-task" />
+      </button>
+      <button
+        @click="insertHorizontalRule"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Horizontal Rule"
+      >
+        <i class="bi bi-hr" />
+      </button>
+      <button
+        @click="insertImage"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Insert Image"
+      >
+        <i class="bi bi-card-image" />
+      </button>
+      <button
+        @click=""
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Insert Link"
+      >
+        <i class="bi bi-link" />
+      </button>
+      <button
+        @click="undo"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Undo"
+      >
+        <i class="bi bi-arrow-counterclockwise" />
+      </button>
+      <button
+        @click="redo"
+        class="toolbar-button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Redo"
+      >
+        <i class="bi bi-arrow-clockwise" />
+      </button>
+      <div
+        @input="onDocumentInput"
+        v-html="documentContents"
+        contenteditable="true"
+        class="border rounded editor-output"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-
 
 export default {
   name: "MarkdownEditor",
@@ -91,8 +188,11 @@ export default {
   data() {
     return {
       documentContents: this.contents || "<p><br></p>",
-      documentTitle: this.title || "Untitled"
+      documentTitle: this.title || "Untitled",
     };
+  },
+  mounted() {
+    document.execCommand("defaultParagraphSeparator", false, "p");
   },
   methods: {
     onTitleInput(event) {
@@ -142,7 +242,7 @@ export default {
       document.execCommand("insertHorizontalRule");
     },
     insertHyperlink() {
-      document.execCommand("createLink", false, '');
+      document.execCommand("createLink", false, "");
     },
     insertImage() {
       document.execCommand("insertImage");
@@ -159,17 +259,17 @@ export default {
 
 <style>
 /* TODO - research and see if @apply is what should be used here */
-.button {
-  border: 2px solid gray;
+.toolbar-button {
+  border: 1.5px solid black;
   border-radius: 5px;
-  padding: 5px;
+  padding: 5 4 5 4px;
   margin: 2px;
   background-color: white;
   color: black;
 }
 
-.button:hover {
-  background-color: gray;
+.toolbar-button:hover {
+  background-color: black;
   color: white;
 }
 
@@ -182,9 +282,9 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
-  /* min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  background-color: gray;
+  min-width: 210px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
@@ -193,8 +293,36 @@ export default {
   display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbutton {
-  background-color: #3e8e41;
+.editor-output {
+  height: 100%;
+  display: block;
+}
+
+/* Make the Markdown styling look good */
+.editor-output h1 {
+}
+
+.editor-output h2 {
+}
+
+.editor-output h3 {
+}
+
+.editor-output h4 {
+}
+
+.editor-output h5 {
+}
+
+.editor-output h6 {
+}
+
+.editor-output p {
+}
+
+.editor-output ul {
+}
+
+.editor-output ol {
 }
 </style>
