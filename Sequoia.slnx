@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="Sequoia.Core/Sequoia.Core.csproj" />
   <Project Path="Sequoia.Web.Client/Sequoia.Web.Client.csproj" />
+  <Project Path="Sequoia.Web.Server/Sequoia.Web.Server.csproj" />
 </Solution>
