@@ -4,5 +4,5 @@
   </Folder>
   <Project Path="Sequoia.Core/Sequoia.Core.csproj" />
   <Project Path="Sequoia.Web.Client/Sequoia.Web.Client.csproj" />
-  <Project Path="Sequoia.Web.Server/Sequoia.Web.Server.csproj" />
+  <Project Path="Sequoia.Web.Server/Sequoia.Web.Server.csproj" Id="6d9600d1-5d61-4f1b-bf62-64f06a6b340d" />
 </Solution>
