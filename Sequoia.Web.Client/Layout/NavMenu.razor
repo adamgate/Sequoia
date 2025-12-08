@@ -1,39 +1,17 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Sequoia.Web.Client</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
-
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
+﻿<RadzenSidebar Responsive="false" Style="width: max-content; height: 100%">
+    <RadzenPanelMenu DisplayStyle="@(contextSidebarExpanded? MenuItemDisplayStyle.IconAndText: MenuItemDisplayStyle.Icon)" ShowArrow="false">
+        <RadzenPanelMenuItem Text="" Icon="@(contextSidebarExpanded ? "dock_to_right" : "side_navigation")" />
+        <RadzenPanelMenuItem Text="Home" Icon="home" />
+        <RadzenPanelMenuItem Text="Dashboards" Icon="dashboard" />
+        <RadzenPanelMenuItem Text="Notes" Icon="docs" />
+        <RadzenPanelMenuItem Text="Calendar" Icon="calendar_month" />
+        <RadzenPanelMenuItem Text="To-Do" Icon="checklist" />
+        <RadzenPanelMenuItem Text="Time Tracker" Icon="timer" />
+        <RadzenPanelMenuItem Text="Settings" Icon="settings" Style="justify-content: end"/>
+    </RadzenPanelMenu>
+</RadzenSidebar>
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+    bool contextSidebarExpanded = false;
+    bool navMenuSidebarExpanded = false;
 }

@@ -4,20 +4,32 @@
     <RadzenTheme Theme="material" />
 </HeadContent>
 
-<div class="page">
-    <div class="sidebar">
+<RadzenLayout>
+    <RadzenStack Orientation="Orientation.Horizontal">
+
         <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+        <ContextSidebar />
 
+        <RadzenTabs @bind-SelectedIndex="@selectedIndex">
+            <Tabs>
+                <RadzenTabsItem Text="Homepage">Homepage</RadzenTabsItem>
+                <RadzenTabsItem Text="Things to Try">Things to Try</RadzenTabsItem>
+            </Tabs>
+        </RadzenTabs>
+
+        </RadzenStack>
+
+    <RadzenBody>
         <article class="content px-4">
             @Body
         </article>
-    </main>
-</div>
+    </RadzenBody>
+</RadzenLayout>
 
 <RadzenComponents />
+
+@code {
+    bool contextSidebarExpanded = false;
+    int selectedIndex = 0;
+}
