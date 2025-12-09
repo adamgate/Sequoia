@@ -1,0 +1,36 @@
+﻿@inject TooltipService tooltipService
+
+<RadzenSidebar Responsive="false" Expanded="true" Style="min-width: max-content; width: max-content;" class="h-100">
+    <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.SpaceBetween" class="h-100">
+
+        <RadzenPanelMenu DisplayStyle="MenuItemDisplayStyle.Icon" ShowArrow="false">
+            <RadzenPanelMenuItem Text="Expand/Collapse" Icon="@(IsContextSidebarExpanded ? "side_navigation" : "dock_to_right")" Click="@UpdateIsContextSidebarExpanded" MouseEnter="@(args => ShowTooltip(args, (IsContextSidebarExpanded ? "Collapse" : "Expand")))" />
+            <RadzenPanelMenuItem Text="Home" Icon="home" MouseEnter="@(args => ShowTooltip(args, "Home"))" />
+            <RadzenPanelMenuItem Text="Dashboards" Icon="dashboard" MouseEnter="@(args => ShowTooltip(args, "Dashboards"))" />
+            <RadzenPanelMenuItem Text="Notes" Icon="docs" MouseEnter="@(args => ShowTooltip(args, "Notes"))" />
+            <RadzenPanelMenuItem Text="Calendar" Icon="calendar_month" MouseEnter="@(args => ShowTooltip(args, "Calendar"))" />
+            <RadzenPanelMenuItem Text="To-Do" Icon="checklist" MouseEnter="@(args => ShowTooltip(args, "To-Do"))" />
+            <RadzenPanelMenuItem Text="Time Tracker" Icon="timer" MouseEnter="@(args => ShowTooltip(args, "Time Tracker"))" />
+        </RadzenPanelMenu>
+
+        <RadzenPanelMenu DisplayStyle="MenuItemDisplayStyle.Icon" ShowArrow="false">
+            <RadzenPanelMenuItem Text="Settings" Icon="settings" MouseEnter="@(args => ShowTooltip(args, "Settings"))" />
+        </RadzenPanelMenu>
+
+    </RadzenStack>
+</RadzenSidebar>
+
+@code {
+    [Parameter] public bool IsContextSidebarExpanded { get; set; }
+    [Parameter] public EventCallback<bool> IsContextSidebarExpandedChanged { get; set; }
+
+    public async Task UpdateIsContextSidebarExpanded()
+    {
+        IsContextSidebarExpanded = !IsContextSidebarExpanded;
+        await IsContextSidebarExpandedChanged.InvokeAsync(IsContextSidebarExpanded);
+    }
+
+    void ShowTooltip(ElementReference elementReference, string tooltip)
+        => tooltipService.Open(elementReference, tooltip);
+
+}

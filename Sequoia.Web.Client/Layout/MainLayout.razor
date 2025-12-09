@@ -1,23 +1,45 @@
-﻿@inherits LayoutComponentBase
+﻿@using Sequoia.Web.Client.Layout.Context_Sidebar
+
+@inherits LayoutComponentBase
 
 <HeadContent>
     <RadzenTheme Theme="material" />
 </HeadContent>
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<RadzenLayout>
+    <RadzenStack Orientation="Orientation.Horizontal" Style="height: 100vh; width: 100vh">
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+        <NavMenuSidebar @bind-IsContextSidebarExpanded="isContextSidebarExpanded" />
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+        <ContextSidebarWrapper @bind-IsExpanded="isContextSidebarExpanded"/>
+
+        <RadzenStack Orientation="Orientation.Vertical" class="h-100 w-100">
+
+            <RadzenTabs @bind-SelectedIndex="@selectedTabIndex" Change="@OnChange" RenderMode="TabRenderMode.Client" class="w-100">
+                <Tabs>
+                    <RadzenTabsItem Text="Homepage" />
+                    <RadzenTabsItem Text="Things to Try" />
+                </Tabs>
+            </RadzenTabs>
+
+            <RadzenBody class="h-100">
+                @Body
+            </RadzenBody>
+
+        </RadzenStack>
+
+    </RadzenStack>
+
+</RadzenLayout>
 
 <RadzenComponents />
+
+@code {
+    private bool isContextSidebarExpanded = true;
+    private int selectedTabIndex = 0;
+
+    void OnChange(int index)
+    {
+
+    }
+}
