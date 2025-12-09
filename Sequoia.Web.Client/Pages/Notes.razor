@@ -1,9 +1,49 @@
 ﻿@page "/notes"
 
+@inject TooltipService tooltipService
+
 <PageTitle>Notes</PageTitle>
 
-<h3>Notes</h3>
+<RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.SpaceBetween" class="m-2">
+    <div>
+        <RadzenIcon Icon="add_notes" MouseEnter="@(args => ShowTooltip(args, "Create New Note"))" />
+        <RadzenIcon Icon="create_new_folder" MouseEnter="@(args => ShowTooltip(args, "Create New Folder"))" />
+    </div>
+    <div>
+        <RadzenIcon Icon="expand_all" MouseEnter="@(args => ShowTooltip(args, "Expand All"))" />
+        <RadzenIcon Icon="schedule" MouseEnter="@(args => ShowTooltip(args, "Recent"))" />
+        <RadzenIcon Icon="swap_vert" MouseEnter="@(args => ShowTooltip(args, "Sort By"))" />
+    </div>
+</RadzenStack>
+
+<hr class="p-0 m-0"/>
+
+<RadzenTree class="h-100">
+
+    <RadzenTreeItem Text="Old Notes">
+        <ChildContent>
+            <RadzenTreeItem Text="Very Old Note" />
+        </ChildContent>
+    </RadzenTreeItem>
+
+    <RadzenTreeItem Text="Hobbies">
+        <ChildContent>
+            <RadzenTreeItem Text="Animals">
+                <ChildContent>
+                    <RadzenTreeItem Text="Spot's Feeding Schedule'" />
+                </ChildContent>
+            </RadzenTreeItem>
+            <RadzenTreeItem Text="Roller Skating" />
+        </ChildContent>
+    </RadzenTreeItem>
+
+    <RadzenTreeItem Text="Temp">
+
+    </RadzenTreeItem>
+
+</RadzenTree>
 
 @code {
-
+    void ShowTooltip(ElementReference elementReference, string tooltip)
+        => tooltipService.Open(elementReference, tooltip);
 }

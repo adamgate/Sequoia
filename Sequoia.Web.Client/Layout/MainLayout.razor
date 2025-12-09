@@ -1,6 +1,6 @@
-﻿@using Sequoia.Web.Client.Layout.Context_Sidebar
+﻿@inherits LayoutComponentBase
 
-@inherits LayoutComponentBase
+@inject TooltipService tooltipService
 
 <HeadContent>
     <RadzenTheme Theme="material" />
@@ -9,12 +9,24 @@
 <RadzenLayout>
     <RadzenStack Orientation="Orientation.Horizontal" Style="height: 100vh; width: 100vh">
 
+        <!-- Navigation Sidebar -->
         <NavMenuSidebar @bind-IsContextSidebarExpanded="isContextSidebarExpanded" />
 
-        <ContextSidebarWrapper @bind-IsExpanded="isContextSidebarExpanded"/>
+        <!-- Context Sidebar -->
+        <RadzenStack Orientation="Orientation.Vertical" class="h-100" Visible="@(isContextSidebarExpanded)">
+            <RadzenMenu Style="background-color: white" class="w-100; justify-content-center">
+                <RadzenMenuItem Icon="center_focus_weak" IconColor="black" MouseEnter="@(args => ShowTooltip(args, "Focus on Opened Tab"))" />
+                <RadzenMenuItem Icon="search" IconColor="black" MouseEnter="@(args => ShowTooltip(args, "Search"))" />
+            </RadzenMenu>
+
+            <RadzenSidebar class="h-100">
+                @Body
+            </RadzenSidebar>
+        </RadzenStack>
 
         <RadzenStack Orientation="Orientation.Vertical" class="h-100 w-100">
 
+            <!-- Tab Header -->
             <RadzenTabs @bind-SelectedIndex="@selectedTabIndex" Change="@OnChange" RenderMode="TabRenderMode.Client" class="w-100">
                 <Tabs>
                     <RadzenTabsItem Text="Homepage" />
@@ -22,8 +34,9 @@
                 </Tabs>
             </RadzenTabs>
 
+            <!-- Tab Content -->
             <RadzenBody class="h-100">
-                @Body
+                <p>Tab specific content will go here</p>
             </RadzenBody>
 
         </RadzenStack>
@@ -42,4 +55,7 @@
     {
 
     }
+
+    void ShowTooltip(ElementReference elementReference, string tooltip)
+        => tooltipService.Open(elementReference, tooltip);
 }
