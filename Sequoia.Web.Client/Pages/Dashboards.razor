@@ -1,7 +1,30 @@
 ﻿@page "/dashboards"
+@inject TooltipService tooltipService
 
-<h3>Dashboards</h3>
+<RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.SpaceAround" class="m-2">
+    <RadzenIcon Icon="dashboard_customize" MouseEnter="@(args => ShowTooltip(args, "Create New Dashboard"))" />
+    <RadzenIcon Icon="dashboard_2_edit" MouseEnter="@(args => ShowTooltip(args, "Edit Current Dashboard"))" />
+    <RadzenIcon Icon="delete" MouseEnter="@(args => ShowTooltip(args, "Delete Current Dashboard"))" />
+</RadzenStack>
+
+<hr class="p-0 m-0" />
+
+<RadzenStack Orientation="Orientation.Vertical">
+    <RadzenCard Variant="Variant.Outlined">
+        <RadzenText TextStyle="TextStyle.H6">Homepage</RadzenText>
+    </RadzenCard>
+    <RadzenCard Variant="Variant.Outlined">
+        <RadzenText TextStyle="TextStyle.H6">Work</RadzenText>
+    </RadzenCard>
+    <RadzenCard Variant="Variant.Outlined">
+        <RadzenText TextStyle="TextStyle.H6">School</RadzenText>
+    </RadzenCard>
+    <RadzenCard Variant="Variant.Outlined">
+        <RadzenText TextStyle="TextStyle.H6">Book Progress</RadzenText>
+    </RadzenCard>
+</RadzenStack>
 
 @code {
-
+    void ShowTooltip(ElementReference elementReference, string tooltip)
+       => tooltipService.Open(elementReference, tooltip);
 }

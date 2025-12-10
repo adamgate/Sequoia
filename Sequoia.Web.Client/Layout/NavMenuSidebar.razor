@@ -4,11 +4,31 @@
     <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.SpaceBetween" class="h-100">
 
         <RadzenPanelMenu DisplayStyle="MenuItemDisplayStyle.Icon" ShowArrow="false">
-            <RadzenPanelMenuItem Text="Expand/Collapse" Icon="@(IsContextSidebarExpanded ? "side_navigation" : "dock_to_right")" Click="@UpdateIsContextSidebarExpanded" MouseEnter="@(args => ShowTooltip(args, (IsContextSidebarExpanded ? "Collapse" : "Expand")))" />
-            <RadzenPanelMenuItem Text="Home" Icon="home" MouseEnter="@(args => ShowTooltip(args, "Home"))" Path="" Match="NavLinkMatch.All" />
-            <RadzenPanelMenuItem Text="Dashboards" Icon="dashboard" MouseEnter="@(args => ShowTooltip(args, "Dashboards"))" Path="dashboards"/>
-            <RadzenPanelMenuItem Text="Notes" Icon="docs" MouseEnter="@(args => ShowTooltip(args, "Notes"))" Path="notes"/>
-            <RadzenPanelMenuItem Text="Calendar" Icon="calendar_month" MouseEnter="@(args => ShowTooltip(args, "Calendar"))" Path="calendar"/>
+            <RadzenPanelMenuItem 
+                Text="Expand/Collapse" 
+                Icon="@(IsContextSidebarExpanded ? "side_navigation" : "dock_to_right")" 
+                Click="@UpdateIsContextSidebarExpanded" 
+                MouseEnter="@(args => ShowTooltip(args, (IsContextSidebarExpanded ? "Collapse" : "Expand")))" />
+            <RadzenPanelMenuItem 
+                Text="Home" Icon="home" 
+                MouseEnter="@(args => ShowTooltip(args, "Home"))" 
+                Path="" 
+                Match="NavLinkMatch.All" />
+            <RadzenPanelMenuItem 
+                Text="Dashboards" 
+                Icon="dashboard" 
+                MouseEnter="@(args => ShowTooltip(args, "Dashboards"))" 
+                Path="dashboards"/>
+            <RadzenPanelMenuItem 
+                Text="Notes" 
+                Icon="docs" 
+                MouseEnter="@(args => ShowTooltip(args, "Notes"))" 
+                Path="notes"/>
+            <RadzenPanelMenuItem 
+                Text="Calendar" 
+                Icon="calendar_month" 
+                MouseEnter="@(args => ShowTooltip(args, "Calendar"))" 
+                Path="calendar"/>
             <RadzenPanelMenuItem Text="To-Do" Icon="checklist" MouseEnter="@(args => ShowTooltip(args, "To-Do"))" Path="to-dos"/>
             <RadzenPanelMenuItem Text="Time Tracker" Icon="timer" MouseEnter="@(args => ShowTooltip(args, "Time Tracker"))" Path="time_tracker"/>
         </RadzenPanelMenu>
